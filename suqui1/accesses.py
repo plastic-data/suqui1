@@ -24,7 +24,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import calendar
 import collections
+import datetime
 
 from suq1 import accesses, objects
 
@@ -37,6 +39,7 @@ __all__ = [
     'Session',
     ]
 
+conv = None  # from ??? import conv
 model = None  # from ??? import model
 
 
@@ -106,7 +109,6 @@ class AuthenticationAccount(objects.Initable):
     access_token = None
     admin = False
     browser_access_token = None
-    browser_client_token = None
     email = None
     email_verified = None  # Datetime of last email verification
     full_name = None
@@ -224,6 +226,8 @@ class Session(objects.JsonMonoClassMapper, objects.Mapper, objects.SmartWrapper)
 def init_module(components):
     accesses.init_module(components)
 
+    global conv
+    conv = components['conv']
     global model
     model = components['model']
 

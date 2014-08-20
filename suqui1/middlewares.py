@@ -34,7 +34,7 @@ from paste.urlparser import StaticURLParser
 import webob
 from weberror.errormiddleware import ErrorMiddleware
 
-from . import urls
+# from . import urls
 
 
 conf = None  # from ??? import conf
@@ -122,7 +122,7 @@ def wrap_app(app):
 
     # Handle Python exceptions
     if not conf['debug']:
-        app = ErrorMiddleware(app, global_conf, **conf['errorware'])
+        app = ErrorMiddleware(app, conf['global_conf'], **conf['errorware'])
 
     if conf['static_files']:
         # Serve static files

@@ -38,7 +38,9 @@ __all__ = [
     'init_module',
     ]
 
+conf = None  # from ??? import conf
 conv = None  # from ??? import conv
+model = None  # from ??? import model
 
 
 class Ctx(contexts.Ctx):
@@ -64,7 +66,6 @@ class Ctx(contexts.Ctx):
             if self.req is None:
                 self.session = None
             else:
-                from . import model
                 session, error = conv.pipe(
                     conv.input_to_uuid_str,
                     conv.not_none,
@@ -101,6 +102,10 @@ class Ctx(contexts.Ctx):
 def init_module(components):
     contexts.init_module(components)
 
+    global conf
+    conf = components['conf']
     global conv
     conv = components['conv']
+    global model
+    model = components['model']
 

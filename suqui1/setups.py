@@ -28,8 +28,18 @@
 
 
 from suq1 import objects, setups
+from suq1.setups import setup, Status
 
 from . import accesses, contexts, middlewares, urls, wsgihelpers
+
+
+__all__ = [
+    'configure',
+    'init',
+    'init_module',
+    'setup',
+    'Status',
+    ]
 
 
 def configure(ctx):
@@ -37,10 +47,16 @@ def configure(ctx):
 
 
 def init(components):
+    init_module(components)
+
     accesses.init_module(components)
     contexts.init_module(components)
     middlewares.init_module(components)
     objects.init_module(components)
     urls.init_module(components)
     wsgihelpers.init_module(components)
+
+
+def init_module(components):
+    setups.init_module(components)
 

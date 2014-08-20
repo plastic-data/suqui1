@@ -26,13 +26,14 @@
 
 from markupsafe import Markup
 from suq1 import wsgihelpers
-from suq1.wsgihelpers import handle_cross_origin_resource_sharing, respond_json, wsgify
+from suq1.wsgihelpers import errors_title, handle_cross_origin_resource_sharing, respond_json, wsgify
 import webob.exc
 
 
 __all__ = [
     'bad_request',
     'error',
+    'errors_title',
     'forbidden',
     'handle_cross_origin_resource_sharing',
     'init_module',
